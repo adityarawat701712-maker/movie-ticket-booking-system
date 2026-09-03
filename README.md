@@ -1,68 +1,108 @@
-# Movie Ticket Booking System
+# 🎬 Movie Ticket Booking System
 
-A small menu-driven C++ console application for a single cinema.
+A menu-driven **Movie Ticket Booking System** developed in C++ for a single cinema. The project demonstrates core **Object-Oriented Programming (OOP)** principles, modular design, SOLID principles, runtime polymorphism, composition, aggregation, and file-independent in-memory booking management.
 
-## Required Features
+---
 
-- List all currently playing movies
-- List shows for a selected movie
-- Display seat layout and AVAILABLE / BOOKED status
-- Book one or more seats
-- Reject already-booked seats
-- Calculate Silver Rs.150, Gold Rs.250, Platinum Rs.400
-- Pay using UPI, Card or Cash
-- Failed payment does not confirm a booking
-- Print ticket
-- Cancel booking and release seats
+## 📌 Project Overview
 
-## OOP Concepts Demonstrated
+The Movie Ticket Booking System simulates a real-world cinema booking workflow.
 
-1. Encapsulation
-2. Abstraction
-3. Inheritance
-4. Runtime polymorphism
-5. Compile-time polymorphism
-6. Static member
-7. `this` keyword
-8. Composition
-9. Aggregation
-10. Association
+Customers can:
 
-## Build
+- View currently playing movies
+- Select a movie and available show
+- View the seat layout
+- Select one or more seats
+- Calculate ticket prices based on seat type
+- Pay using UPI, Card, or Cash
+- Receive a printed ticket with booking details
+- View their booked tickets
+- Cancel an existing booking
 
-C++17 or later:
+The system ensures that seats are booked only after successful payment and that cancelled seats become available again.
 
-```bash
-g++ -std=c++17 main.cpp -o movie_booking
-```
+---
 
-Windows:
+## ✨ Features
 
-```bash
-g++ -std=c++17 main.cpp -o movie_booking.exe
-movie_booking.exe
-```
+### 🎥 Movie Management
+- Display all currently playing movies
+- Show movie language and duration
+- Select a movie to view its available shows
 
-## Repository Structure
+### 🕐 Show Management
+- Display screen and show timings
+- Associate each show with a movie and screen
+- Maintain independent seat availability for every show
+
+### 💺 Seat Management
+The cinema supports three seat categories:
+
+| Seat Type | Price |
+|-----------|------:|
+| SILVER | ₹150 |
+| GOLD | ₹250 |
+| PLATINUM | ₹400 |
+
+Seats are displayed with their current availability status.
+
+### 🎟️ Ticket Booking
+- Book one or multiple seats
+- Prevent booking of already booked seats
+- Validate invalid seat numbers
+- Calculate total ticket price automatically
+- Confirm booking only after successful payment
+
+### 💳 Payment System
+Supports:
+
+- UPI
+- Card
+- Cash
+
+Payment is implemented using an abstract `Payment` class and derived payment classes.
+
+### ❌ Booking Cancellation
+- Cancel an existing booking
+- Automatically release the booked seats
+- Make cancelled seats available again
+
+### 🎫 Ticket Printing
+Each successful booking displays:
+
+- Booking ID
+- Movie name
+- Screen
+- Show time
+- Seat numbers
+- Seat types
+- Total amount
+- Payment method
+
+---
+
+## 🏗️ Project Architecture
+
+The project follows a modular class-based architecture.
 
 ```text
-movie-ticket-booking/
-├── 01_Movie.cpp
-├── 02_Seat.cpp
-├── 03_Screen.cpp
-├── 04_Cinema.cpp
-├── 05_Show.cpp
-├── 06_ShowSeat.cpp
-├── 07_Customer.cpp
-├── 08_Booking.cpp
-├── 09_Payment.cpp
-├── 10_PaymentTypes.cpp
-├── 11_PriceCalculator.cpp
-├── 12_TicketPrinter.cpp
-├── 13_BookingService.cpp
-├── main.cpp
-├── README.md
-└── .gitignore
-```
-
-The assignment specifically asks for one class per `.cpp` file and no header files, so `main.cpp` uses a simple unity-build approach by including the class `.cpp` files.
+Movie Ticket Booking System
+│
+├── Movie
+├── Seat
+├── Screen
+├── Cinema
+├── Show
+├── ShowSeat
+├── Customer
+├── Booking
+│
+├── Payment
+│   ├── UpiPayment
+│   ├── CardPayment
+│   └── CashPayment
+│
+├── PriceCalculator
+├── TicketPrinter
+└── BookingService
